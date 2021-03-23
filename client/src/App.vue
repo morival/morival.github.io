@@ -163,7 +163,7 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
-  z-index: -2;
+  /* z-index: -2; */
 }
 /* } //  background-image: url("paper.gif"); */
 .header {
@@ -172,9 +172,9 @@ body {
   justify-content: space-between;
 }
 
-.logo {
+/* .logo {
   z-index: 1;
-}
+} */
 
 h1 {
   color: black;
