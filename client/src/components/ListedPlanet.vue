@@ -71,13 +71,13 @@ export default {
     text-align: center;
 }
 .size{
-    opacity: 90%;
+    /* opacity: 90%; */
     transition-duration: 0.75s;
 }
 .distance {
     width: 100px;
     max-width: 100px;
-    opacity: 90%;
+    /* opacity: 90%; */
     transition-duration: 0.75s;
 }
 .listed-planet > label > img:hover{
@@ -85,7 +85,7 @@ export default {
     /* width: 250px;
     height: 250px; */
     transform: scale(2, 2);
-    opacity: 100%;
+    /* opacity: 100%; */
 }
 
 
