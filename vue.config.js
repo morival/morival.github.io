@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/morival/morival.github.io/'
+  publicPath: '/morival.github.io/'
 }
