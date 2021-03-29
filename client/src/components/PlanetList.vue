@@ -5,12 +5,13 @@
         <div class="filter-buttons">
             <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span> </span></button>
             <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span> </span></button>
-            <!-- <button v-on:click="compareDensity" class="main-button"> Filter By Planets by Density <span> </span></button> -->
+            <button v-on:click="compareDensity" class="main-button"> Filter Planets by Density <span> </span></button>
+            <button v-on:click="compareGravity" class="main-button"> Filter Planets by Gravity <span> </span></button>
         </div>
         <img id="sun-image" src="../assets/images/Sun.png">
         <div class="planet-list" v-if="planets.length">
         
-            <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" />
+            <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" :isActive="isActive" />
         </div>
     
     </div>
@@ -30,6 +31,7 @@ export default {
     data() {
         return {
             filterPlanets: null,
+            isActive: ""
         }
     },
     computed: {
@@ -39,27 +41,32 @@ export default {
         sortBySize: function(){
             return this.planets.sort((a, b) => a.meanRadius - b.meanRadius);
         },
-        // sortByDensity: function(){
-        //     return this.planet.sort((a, b) => a.density - b.density);
-        // },
-        // sortByGravity: function(){
-        //     return this.planet.sort((a, b) => a.gravity - b.gravity);
-        // }
+        sortByDensity: function(){
+            return this.planets.sort((a, b) => a.density - b.density);
+        },
+        sortByGravity: function(){
+            return this.planets.sort((a, b) => a.gravity - b.gravity);
+        }
     },
     methods: {
-        compareSize: function(){
-            let isActive = false;
-            this.filterPlanets = this.sortBySize;
-            eventBus.$emit('planet-by-size', isActive);
-        },
         compareDistance: function(){
-            let isActive = true;
             this.filterPlanets = this.sortByDistance;
-            eventBus.$emit('planet-by-size', isActive);
+            this.isActive = "distance";
+            // eventBus.$emit('planet-by-size', isActive);
         },
-        // compareDensity: function(){
-        //     this.filterPlanets = this.sortByDensity;
-        // }
+        compareSize: function(){
+            this.filterPlanets = this.sortBySize;
+            this.isActive = "size";
+            // eventBus.$emit('planet-by-size', isActive);
+        },
+        compareDensity: function(){
+            this.filterPlanets = this.sortByDensity;
+            this.isActive = "density";
+        },
+        compareGravity: function(){
+            this.filterPlanets = this.sortByGravity;
+            this.isActive = "gravity";
+        }
     }
 };
 </script>

@@ -4,7 +4,7 @@
                 <input :id="`${planet.englishName}`" type="checkbox"  
                 :value="`${planet.englishName}`" v-model="planetChecked" v-on:click="handleClick()"/>
                 <img
-                    v-bind:class="[isActive ? 'distance' : 'size']"
+                    v-bind:class="isActive"
                     v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
                     :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
@@ -18,18 +18,18 @@ import {eventBus} from '@/main.js';
 
 export default {
     name: 'listed-planet',
-    props: ['planet'],
+    props: ['planet', 'isActive'],
     data() {
         return {
             widthOfImage: 70,
             planetChecked: [],
-            isActive: true
+            // isActive: null
         }
     },
     mounted() {
-        eventBus.$on('planet-by-size', activate => {
-            this.isActive = activate;
-        })
+        // eventBus.$on('planet-by-size', activate => {
+        //     this.isActive = activate;
+        // })
     },
     methods: {
         handleClick: function() {
@@ -70,14 +70,22 @@ export default {
     width: 110px;
     text-align: center;
 }
-.size{
-    /* opacity: 90%; */
-    transition-duration: 0.75s;
-}
 .distance {
     width: 100px;
     max-width: 100px;
-    /* opacity: 90%; */
+    transition-duration: 0.75s;
+}
+.size {
+    transition-duration: 0.75s;
+}
+.density {
+    width: 100px;
+    max-width: 100px;
+    transition-duration: 0.75s;
+}
+.gravity {
+    width: 100px;
+    max-width: 100px;
     transition-duration: 0.75s;
 }
 .listed-planet > label > img:hover{
@@ -95,6 +103,9 @@ export default {
     font-size: 20px;
     display: flex;
     flex-direction: row;
+    
+    background-color: black;
+    border-radius: 100%;
     
 }
 

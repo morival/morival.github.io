@@ -51,7 +51,9 @@ import MoonList from './components/MoonList.vue'
 import HubbleServices from './services/HubbleServices.js'
 import MoonDetails from '@/components/MoonDetails';
 import Glossary from '@/components/Glossary.vue';
-import { eventBus } from '@/main.js'
+import { eventBus } from '@/main.js';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 
 export default {
@@ -130,13 +132,33 @@ export default {
       return this.moons.filter(function(moon) {
         return planetsRel.indexOf(moon.rel) != -1;
         });
-        console.log(this.description);
+        // console.log(this.description);
       }
     },
-    getDescriptions: function(){
-      HubbleServices.getDescriptions()
-      .then(data => this.descriptions = data)
+    // getDescriptions: function(){
+    //   HubbleServices.getDescriptions()
+    //   .then(data => this.descriptions = data)
+    // },
+    async getDescriptions(){
+      const url = 'http://hubblesite.org/api/v3/glossary?page=all';
+      const headers = { 
+        // "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': 'http://localhost:8080/',
+        'Access-Control-Allow-Methods' : 'GET',
+        'Access-Control-Allow-Headers': "Origin, Content-Type, X-Auth-Token"
+        };
+      // const response = await axios.get(url);
+      // const results = response.data.results;
+      // console.log(response);
+      const response = axios.get(url, {
+        headers
+        // mode:'cors',
+        // headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': "*"}
+        })
+        .then(res => this.descriptions = res.data)
+        .then(console.log(this.descriptions))
     },
+    
     
   }   
 }
