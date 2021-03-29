@@ -140,7 +140,7 @@ export default {
     //   .then(data => this.descriptions = data)
     // },
     async getDescriptions(){
-      const url = 'http://hubblesite.org/api/v3/glossary?page=all';
+      const url = 'https://hubblesite.org/api/v3/glossary?page=all';
       const headers = { 
         // "Content-Type": "application/json",
         'Access-Control-Allow-Origin': 'http://localhost:8080/',
