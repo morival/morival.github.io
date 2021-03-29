@@ -179,7 +179,7 @@ body {
   overflow: scroll;
   background-color: black;
   background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
-  background-repeat: no-repeat;
+  /* background-repeat:inherit; */
   background-size: 100%;
   background-attachment: fixed;
   display: flex;

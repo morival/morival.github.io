@@ -6,8 +6,9 @@
                 <spinning-globes :planet="planet"></spinning-globes>
             </div>
             <div id="listed-planet-details">
-                <h5>Description:</h5>
+                
                 <div v-for="(body, index) in descriptions" :key="index">
+                    <h5 v-if="body.name === planet.englishName">Description:</h5>
                     <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
                 </div>
                 <h5>Specification:</h5>
@@ -59,6 +60,7 @@ export default {
 <style>
 #selected-planet {
     margin-top: 30px;
+    min-width: 1020px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

@@ -73,8 +73,8 @@ export default {
 #Saturn img {
     width: 200px;
     max-width: 200px;
-    margin-bottom: -25px;
-    margin-left: -60px;
+    margin-bottom: -5px;
+    margin-left: -45px;
 }
 .listed-planet > label {
     width: 110px;
@@ -107,35 +107,43 @@ export default {
     justify-content: center;
     align-items: center;
 }
-#Mercury > img:hover {
+.listed-planet > label > img:hover {
+    transition-timing-function: ease;
+    transform: scale(1.8, 1.8);
+}
+.listed-planet > #Saturn > img:hover {
+    transition-timing-function: ease;
+    transform: scale(1.5, 1.5);
+}
+.showShadow > #Mercury > img:hover {
     transition-timing-function: ease;
     transform: scale(35, 35);
 }
-#Mars > img:hover {
+.showShadow > #Mars > img:hover {
     transition-timing-function: ease;
     transform: scale(27, 27);
 }
-#Venus > img:hover {
+.showShadow > #Venus > img:hover {
     transition-timing-function: ease;
     transform: scale(14, 14);
 }
-#Earth > img:hover {
+.showShadow > #Earth > img:hover {
     transition-timing-function: ease;
     transform: scale(12.8, 12.8);
 }
-#Neptune > img:hover {
+.showShadow > #Neptune > img:hover {
     transition-timing-function: ease;
     transform: scale(3, 3);
 }
-#Uranus > img:hover {
+.showShadow > #Uranus > img:hover {
     transition-timing-function: ease;
     transform: scale(3, 3);
 }
-#Saturn > img:hover {
+.showShadow > #Saturn > img:hover {
     transition-timing-function: ease;
     transform: scale(1.7, 1.7);
 }
-#Jupiter > img:hover {
+.showShadow > #Jupiter > img:hover {
     transition-timing-function: ease;
     transform: scale(1.2, 1.2);
 }
