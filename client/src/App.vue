@@ -26,7 +26,7 @@
       <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
     </div>
     <!-- // list of planets starts here -->
-    <div class="planet-list" v-if="planets.length">
+    <div v-if="planets.length">
       <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
     </div>
     <!-- planet details starts here -->
@@ -241,15 +241,16 @@ h4 {
 }
 
 .planet-list {
-  margin: 0;
+  margin: 15px 0;
   margin-left: 5%;
   border: 0;
   padding: 0;
   width: 90%;
+  height: 140px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;  
-  align-items: baseline;
+  align-items: center;
 }
 
 .main-menu {

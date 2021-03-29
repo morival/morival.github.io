@@ -11,7 +11,7 @@
         <img id="sun-image" src="../assets/images/Sun.png">
         <div class="planet-list" v-if="planets.length">
         
-            <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" :isActive="isActive" />
+            <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" :isActive="isActive" :showShadow="showShadow" />
         </div>
     
     </div>
@@ -31,7 +31,8 @@ export default {
     data() {
         return {
             filterPlanets: null,
-            isActive: ""
+            isActive: "",
+            showShadow: ""
         }
     },
     computed: {
@@ -52,20 +53,24 @@ export default {
         compareDistance: function(){
             this.filterPlanets = this.sortByDistance;
             this.isActive = "distance";
+            this.showShadow = "";
             // eventBus.$emit('planet-by-size', isActive);
         },
         compareSize: function(){
             this.filterPlanets = this.sortBySize;
             this.isActive = "size";
+            this.showShadow = "showShadow";
             // eventBus.$emit('planet-by-size', isActive);
         },
         compareDensity: function(){
             this.filterPlanets = this.sortByDensity;
             this.isActive = "density";
+            this.showShadow = "";
         },
         compareGravity: function(){
             this.filterPlanets = this.sortByGravity;
             this.isActive = "gravity";
+            this.showShadow = "";
         }
     }
 };

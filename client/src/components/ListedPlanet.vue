@@ -1,15 +1,23 @@
 <template>
-        <div class="listed-planet">
-            <label :id="planet.englishName">
-                <input :id="`${planet.englishName}`" type="checkbox"  
-                :value="`${planet.englishName}`" v-model="planetChecked" v-on:click="handleClick()"/>
+        <div 
+            class="listed-planet"
+            v-bind:class="showShadow"
+            v-on:click="handleClick()">
+            <label 
+                class="img-container"
+                :id="planet.englishName">
+                <input 
+                    :id="`${planet.englishName}`" 
+                    type="checkbox"  
+                    :value="`${planet.englishName}`" 
+                    v-model="planetChecked" 
+                    v-on:click="handleClick()"/>
                 <img
                     v-bind:class="isActive"
                     v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
                     :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
             </label>
-
         </div>
 </template>
 
@@ -18,7 +26,7 @@ import {eventBus} from '@/main.js';
 
 export default {
     name: 'listed-planet',
-    props: ['planet', 'isActive'],
+    props: ['planet', 'isActive', 'showShadow'],
     data() {
         return {
             widthOfImage: 70,
@@ -59,7 +67,9 @@ export default {
 
 /* CHECKED STYLES */
 
-
+.img-container {
+    position: flex;
+}
 #Saturn img {
     width: 200px;
     max-width: 200px;
@@ -88,25 +98,53 @@ export default {
     max-width: 100px;
     transition-duration: 0.75s;
 }
-.listed-planet > label > img:hover{
-    transition-timing-function: ease;
-    /* width: 250px;
-    height: 250px; */
-    transform: scale(2, 2);
-    /* opacity: 100%; */
+.showShadow {
+    background-color: black;
+    border-radius: 100%;
+    width: 55px;
+    height: 55px;
+    position: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
+#Mercury > img:hover {
+    transition-timing-function: ease;
+    transform: scale(35, 35);
+}
+#Mars > img:hover {
+    transition-timing-function: ease;
+    transform: scale(27, 27);
+}
+#Venus > img:hover {
+    transition-timing-function: ease;
+    transform: scale(14, 14);
+}
+#Earth > img:hover {
+    transition-timing-function: ease;
+    transform: scale(12.8, 12.8);
+}
+#Neptune > img:hover {
+    transition-timing-function: ease;
+    transform: scale(3, 3);
+}
+#Uranus > img:hover {
+    transition-timing-function: ease;
+    transform: scale(3, 3);
+}
+#Saturn > img:hover {
+    transition-timing-function: ease;
+    transform: scale(1.7, 1.7);
+}
+#Jupiter > img:hover {
+    transition-timing-function: ease;
+    transform: scale(1.2, 1.2);
+}
 .listed-planet {
     color: white;
     margin: 10px;
     font-size: 20px;
     display: flex;
     flex-direction: row;
-    
-    background-color: black;
-    border-radius: 100%;
-    
 }
 
 </style>
