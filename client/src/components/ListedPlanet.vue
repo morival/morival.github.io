@@ -44,7 +44,7 @@ export default {
             eventBus.$emit('planet-selected', this.planet);
         },
         setWidthOfPlanetImage() {
-            let number = (this.planet.meanRadius / 500);
+            let number = (this.planet.meanRadius / 450);
                 return number + 'px'
         },
     },
@@ -70,12 +70,12 @@ export default {
 .img-container {
     position: flex;
 }
-#Saturn img {
+/* #Saturn img {
     width: 200px;
     max-width: 200px;
     margin-bottom: -5px;
     margin-left: -45px;
-}
+} */
 .listed-planet > label {
     width: 110px;
     text-align: center;
@@ -106,6 +106,13 @@ export default {
     position: flex;
     justify-content: center;
     align-items: center;
+}
+.listed-planet {
+    color: white;
+    /* margin: 10px; */
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
 }
 .listed-planet > label > img:hover {
     transition-timing-function: ease;
@@ -147,12 +154,6 @@ export default {
     transition-timing-function: ease;
     transform: scale(1.2, 1.2);
 }
-.listed-planet {
-    color: white;
-    margin: 10px;
-    font-size: 20px;
-    display: flex;
-    flex-direction: row;
-}
+
 
 </style>

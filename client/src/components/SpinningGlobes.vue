@@ -1,6 +1,6 @@
 <template>
   <div class="spinning-globes" :planet="planet">
-      <div class="globe" :style="{'background-image': 'url(' + require('../assets/images/'+planet.englishName+'-globe.jpg')+ ')'}"></div>
+      <div class="globe" :style="{'background-image': 'url(' + require('../assets/images/'+planet.englishName+'-map.jpg')+ ')'}"></div>
       <!-- <img v-bind:src="require(`../assets/images/${planet.englishName}-globe.jpg`)" class="earth-globe"> -->
   </div>
 </template>

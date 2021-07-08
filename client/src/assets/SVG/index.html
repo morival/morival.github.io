@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <svg viewbox="0,0 100,100" class="svg-box">
+  
+        <!-- the path to be animated along -->  
+        <path 
+          class="track"
+          fill="none"
+          stroke-width="0.4"
+          d="M 50,25 C 150,25 150,75 50,75 S -50,25 50,25"
+        />
+        
+        <!-- the mover -->
+        <circle class="marker" r="1" fill="orange"></circle>
+        <!-- <image width="5" height="5" class="maker" href="../images/Sun.png"/> -->
+        
+      </svg>
+</body>
+</html>

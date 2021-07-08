@@ -1,0 +1,30 @@
+body {
+    background: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .svg-box {
+    width: 90vw; 
+    height: 50vw;
+    border: solid white 5px;
+  }
+  
+  .track {
+    stroke: #ccc;
+  }
+  
+  .marker {
+    motion-path: path('M 50,25 C 150,25 150,75 50,75 S -50,25 50,25');
+    offset-path: path('M 50,25 C 150,25 150,75 50,75 S -50,25 50,25');
+    animation: move 3s linear infinite;
+    
+  }
+  
+  @keyframes move {
+    100% { 
+      motion-offset: 100%;
+      offset-distance: 100%;
+    }
+  }

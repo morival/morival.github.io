@@ -139,17 +139,22 @@ export default {
     //   HubbleServices.getDescriptions()
     //   .then(data => this.descriptions = data)
     // },
+    
     async getDescriptions(){
-      const url = 'https://hubblesite.org/api/v3/glossary?page=all';
+      axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+      const url = 'https://hubblesite.org/api/v3/glossary';
       const headers = { 
-        // "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': 'http://localhost:8080/',
-        'Access-Control-Allow-Methods' : 'GET',
-        'Access-Control-Allow-Headers': "Origin, Content-Type, X-Auth-Token"
+        // 'Access-Control-Allow-Credentials': 'true',
+        // 'Access-Control-Allow-Headers': "Origin, Content-Type, X-Auth-Token",
+        // 'Content-Type': 'text/html; charset=utf-8',
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Origins': '*'
+        // 'Access-Control-Allow-Methods' : 'GET'
         };
       // const response = await axios.get(url);
       // const results = response.data.results;
       // console.log(response);
+      
       const response = axios.get(url, {
         headers
         // mode:'cors',
@@ -175,7 +180,7 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
-  height: 940px;
+  /* height: 940px; */
   overflow: scroll;
   background-color: black;
   background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
@@ -247,6 +252,7 @@ h4 {
   padding: 0;
   width: 90%;
   height: 140px;
+  background: black;
   display: flex;
   flex-direction: row;
   justify-content: space-around;  

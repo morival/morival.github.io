@@ -2,7 +2,7 @@
   <div class="planet-animation">
     <img class="planet neptune" v-bind:src="require(`../assets/images/Neptune.png`)"/>
     <img class="planet uranus" v-bind:src="require(`../assets/images/Uranus.png`)"/>
-    <img class="planet saturn" v-bind:src="require(`@/assets/images/Saturn_Square.png`)"/>
+    <img class="planet saturn" v-bind:src="require(`@/assets/images/Saturn.png`)"/>
     <img class="planet jupiter" v-bind:src="require(`../assets/images/Jupiter.png`)"/>
     <img class="planet mars" v-bind:src="require(`../assets/images/Uranus.png`)"/>
     <img class="planet venus" v-bind:src="require(`../assets/images/Venus.png`)"/>
@@ -23,8 +23,8 @@ export default {
 <style>
 .planet,
 .star {
+  position: absolute;
   margin-top: -50px;
-  position: fixed;
   width: var(--size);
   height: var(--size);
   top: calc(50% - var(--size)/2);
@@ -35,13 +35,13 @@ export default {
 
 .sun {
   --size: 100px;
-  background: linear-gradient(45deg, goldenrod, yellow);
+  /* background: linear-gradient(45deg, goldenrod, yellow); */
   animation: sun 150s infinite ;
 }
 
 .mercury {
   --size: 20px;
-  background: gray;
+  /* background: gray; */
   animation: mercury 3s infinite linear;
   max-width: 100%;
   border-radius: 50%;
@@ -54,14 +54,14 @@ export default {
 }
 .earth {
   --size: 40px;
-  background: cornflowerblue;
+  /* background: cornflowerblue; */
   animation: earth 6s infinite linear;
   max-width: 20%;
   border-radius: 50%;
 }
 .mars {
   --size: 30px;
-  background:  red;
+  /* background:  red; */
   animation: mars 12s infinite linear;
 }
 .jupiter {
@@ -77,13 +77,13 @@ export default {
 }
 .uranus {
   --size: 50px;
-  background: skyblue;
+  /* background: skyblue; */
   animation: uranus 20s infinite linear;
   transform-style: preserve-3d;
 }
 .neptune {
   --size: 30px;
-  background: royalblue;
+  /* background: royalblue; */
   animation: neptune 240s infinite linear;
   transform-style: preserve-3d;
 
