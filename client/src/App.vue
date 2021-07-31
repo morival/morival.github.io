@@ -18,7 +18,7 @@
     <!-- // list of planets starts here -->
     <div v-if="planets.length">
       <planet-list 
-        :planets="planets" 
+        :planets="planets"
         v-show="show === showPlanets"/>
     </div>
     <!-- planet details starts here -->

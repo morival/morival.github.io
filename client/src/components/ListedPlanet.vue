@@ -1,19 +1,21 @@
 <template>
-    <div class="listed-planet">
+    <div
+        class="listed-planet"
+        v-on:click="handleClick()">
         <label 
             class="img-container"
             :id="planet.englishName">
-                <input 
-                    :id="`${planet.englishName}`" 
-                    type="checkbox"  
-                    :value="`${planet.englishName}`" 
-                    v-model="planetChecked" 
-                    v-on:click="handleClick()"/>
-                <img
-                    v-bind:class="isActive"
-                    v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
-                    :title="`${planet.englishName}`" alt="picture of chosen planet" 
-                    :width="setWidthOfPlanetImage()"/>
+            <input 
+                :id="`${planet.englishName}`" 
+                type="checkbox"  
+                :value="`${planet.englishName}`" 
+                v-model="planetChecked" 
+                v-on:click="handleClick()"/>
+            <img
+                v-bind:class="isActive"
+                v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
+                :title="`${planet.englishName}`" alt="picture of chosen planet" 
+                :width="setWidthOfPlanetImage()"/>
         </label>
     </div>
         <!-- <div 
@@ -63,7 +65,7 @@ export default {
             eventBus.$emit('planet-selected', this.planet);
         },
         setWidthOfPlanetImage() {
-            let number = (this.planet.meanRadius / 450);
+            let number = (this.planet.meanRadius / 455);
                 return number + 'px'
         },
     },
@@ -130,6 +132,9 @@ export default {
 .listed-planet > #Saturn > img:hover {
     transition-timing-function: ease;
     transform: scale(1.5, 1.5);
+}
+label > .size:hover {
+    width: 100px;
 }
 /* .showShadow > #Mercury > img:hover {
     transition-timing-function: ease;
