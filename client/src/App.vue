@@ -1,43 +1,59 @@
 <template>
   <div id="app">
-    <!-- header starts here -->
+    <!-- header/logo starts here -->
     <div class=header>
       <div class=logo>
         <h1>Cosmodex</h1>
         <h4> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
       </div>
+
       <!-- main buttons here -->
       <div class="main-menu">
-        <button class="main-button" v-on:click="show = showPlanets">   View Cosmodex <span> </span></button>
-        <button class="main-button" v-on:click="show = showAnimation;showMoon=false"> Solar System In Action <span> </span></button>
-        <button class="main-button" v-on:click="show = showGlossary; showMoon=false"> What Does That Mean?! <span> </span></button>
+        <button class="main-button" v-on:click="show = showPlanets"> View Cosmodex <span/></button>
+        <button class="main-button" v-on:click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
+        <button class="main-button" v-on:click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
       </div>
     </div>
-    <!-- spinning globes here -->
-    <div class="spinning-globes">
-      
-    </div>
-      <!-- grossary starts here -->
-    <div class="glossary">
-      <glossary :descriptions="descriptions" v-show="show === showGlossary"></glossary>
-    </div>
-    <!-- animation starts here -->
-    <div class="planet-animation">
-      <planet-animation :planets="planets" v-show="show === showAnimation"></planet-animation>
-    </div>
+
     <!-- // list of planets starts here -->
     <div v-if="planets.length">
-      <planet-list :planets="planets" v-show="show === showPlanets"></planet-list>
+      <planet-list 
+        :planets="planets" 
+        v-show="show === showPlanets"/>
     </div>
     <!-- planet details starts here -->
     <div v-if="show === showPlanets">
-      <planet-detail v-if="isSelected" :moons="moons" :planets="planets" :planet="isSelected" :getMoons="getMoons()" :descriptions="descriptions" v-show="show === showPlanets"></planet-detail>
+      <planet-detail 
+        v-if="isSelected" 
+        :moons="moons" 
+        :planets="planets" 
+        :planet="isSelected" 
+        :getMoons="getMoons()" 
+        :descriptions="descriptions" 
+        v-show="show === showPlanets"/>
     </div>
     <!-- moon details starts here -->
     <div v-if="showMoon">
-      <moon-detail :moon="selectedMoon" :isSelected="isSelected" :planets="planets" :planet="isSelected"></moon-detail>
+      <moon-detail 
+        :moon="selectedMoon" 
+        :isSelected="isSelected" 
+        :planets="planets" 
+        :planet="isSelected"/>
     </div>
 
+    <!-- animation starts here -->
+    <div class="planet-animation">
+      <planet-animation 
+        :planets="planets" 
+        v-show="show === showAnimation"/>
+    </div>
+
+    <!-- grossary starts here -->
+    <div class="glossary">
+      <glossary 
+        :descriptions="descriptions" 
+        v-show="show === showGlossary"/>
+    </div>
   </div>
 </template>
 
@@ -48,12 +64,12 @@ import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
 import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
-import HubbleServices from './services/HubbleServices.js'
+// import HubbleServices from './services/HubbleServices.js'
 import MoonDetails from '@/components/MoonDetails';
 import Glossary from '@/components/Glossary.vue';
 import { eventBus } from '@/main.js';
 import axios from 'axios'
-import VueAxios from 'vue-axios'
+// import VueAxios from 'vue-axios'
 
 
 export default {
@@ -76,8 +92,8 @@ export default {
       show: null,
       showPlanets: 1,
       showAnimation: 2,
-      showMoon: false,
-      showGlossary: 3
+      showGlossary: 3,
+      showMoon: false
     }
   },
   mounted(){

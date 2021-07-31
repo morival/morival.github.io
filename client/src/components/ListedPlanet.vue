@@ -1,5 +1,22 @@
 <template>
-        <div 
+    <div class="listed-planet">
+        <label 
+            class="img-container"
+            :id="planet.englishName">
+                <input 
+                    :id="`${planet.englishName}`" 
+                    type="checkbox"  
+                    :value="`${planet.englishName}`" 
+                    v-model="planetChecked" 
+                    v-on:click="handleClick()"/>
+                <img
+                    v-bind:class="isActive"
+                    v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
+                    :title="`${planet.englishName}`" alt="picture of chosen planet" 
+                    :width="setWidthOfPlanetImage()"/>
+        </label>
+    </div>
+        <!-- <div 
             class="listed-planet"
             v-bind:class="showShadow"
             v-on:click="handleClick()">
@@ -18,7 +35,7 @@
                     :title="`${planet.englishName}`" alt="picture of chosen planet" 
                     :width="setWidthOfPlanetImage()"/>
             </label>
-        </div>
+        </div> -->
 </template>
 
 <script>
@@ -26,7 +43,9 @@ import {eventBus} from '@/main.js';
 
 export default {
     name: 'listed-planet',
-    props: ['planet', 'isActive', 'showShadow'],
+    props: ['planet', 'isActive'
+    // , 'showShadow'
+    ],
     data() {
         return {
             widthOfImage: 70,
@@ -80,7 +99,7 @@ export default {
     width: 110px;
     text-align: center;
 }
-.distance {
+.distance, .density, .gravity {
     width: 100px;
     max-width: 100px;
     transition-duration: 0.75s;
@@ -88,17 +107,7 @@ export default {
 .size {
     transition-duration: 0.75s;
 }
-.density {
-    width: 100px;
-    max-width: 100px;
-    transition-duration: 0.75s;
-}
-.gravity {
-    width: 100px;
-    max-width: 100px;
-    transition-duration: 0.75s;
-}
-.showShadow {
+/* .showShadow {
     background-color: black;
     border-radius: 100%;
     width: 55px;
@@ -106,7 +115,7 @@ export default {
     position: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 .listed-planet {
     color: white;
     /* margin: 10px; */
@@ -122,7 +131,7 @@ export default {
     transition-timing-function: ease;
     transform: scale(1.5, 1.5);
 }
-.showShadow > #Mercury > img:hover {
+/* .showShadow > #Mercury > img:hover {
     transition-timing-function: ease;
     transform: scale(35, 35);
 }
@@ -153,7 +162,7 @@ export default {
 .showShadow > #Jupiter > img:hover {
     transition-timing-function: ease;
     transform: scale(1.2, 1.2);
-}
+} */
 
 
 </style>

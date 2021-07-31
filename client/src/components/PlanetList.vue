@@ -3,15 +3,17 @@
     <div class="view-cosmodex">
         
         <div class="filter-buttons">
-            <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span> </span></button>
-            <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span> </span></button>
-            <button v-on:click="compareDensity" class="main-button"> Filter Planets by Density <span> </span></button>
-            <button v-on:click="compareGravity" class="main-button"> Filter Planets by Gravity <span> </span></button>
+            <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span/></button>
+            <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span/></button>
+            <button v-on:click="compareDensity" class="main-button"> Filter Planets by Density <span/></button>
+            <button v-on:click="compareGravity" class="main-button"> Filter Planets by Gravity <span/></button>
         </div>
-        <img id="sun-image" src="../assets/images/Sun.png">
+        <img id="sun-image" v-bind:style="{display: showSun}" src="../assets/images/sun_slice.png">
         <div class="planet-list" v-if="planets.length">
-        
-            <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" :isActive="isActive" :showShadow="showShadow" />
+            <!-- <listed-planet v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" :isActive="isActive" :showShadow="showShadow" /> -->
+            <listed-planet 
+            v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" 
+            :isActive="isActive"/>
         </div>
     
     </div>
@@ -32,7 +34,9 @@ export default {
         return {
             filterPlanets: null,
             isActive: "",
-            showShadow: ""
+            showSun: "none"
+            // ,
+            // showShadow: ""
         }
     },
     computed: {
@@ -53,24 +57,28 @@ export default {
         compareDistance: function(){
             this.filterPlanets = this.sortByDistance;
             this.isActive = "distance";
-            this.showShadow = "";
+            this.showSun = "inline";
+            // this.showShadow = "";
             // eventBus.$emit('planet-by-size', isActive);
         },
         compareSize: function(){
             this.filterPlanets = this.sortBySize;
             this.isActive = "size";
-            this.showShadow = "showShadow";
+            this.showSun = "none";
+            // this.showShadow = "showShadow";
             // eventBus.$emit('planet-by-size', isActive);
         },
         compareDensity: function(){
             this.filterPlanets = this.sortByDensity;
             this.isActive = "density";
-            this.showShadow = "";
+            this.showSun = "none";
+            // this.showShadow = "";
         },
         compareGravity: function(){
             this.filterPlanets = this.sortByGravity;
             this.isActive = "gravity";
-            this.showShadow = "";
+            this.showSun = "none";
+            // this.showShadow = "";
         }
     }
 };
@@ -93,9 +101,10 @@ export default {
     /* z-index: 1; */
 }
 #sun-image {
-    position: absolute;
+    position: fixed;
     z-index: -1;
-    margin-top: -750px;
-    margin-left: -1350px;
+    margin-top: -450px;
+    margin-left: -250px;
+    overflow: hidden;
 }
 </style>

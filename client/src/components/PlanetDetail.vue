@@ -31,7 +31,6 @@
 
 <script>
 import MoonList from './MoonList.vue'
-// import PlanetDescriptionList from './PlanetDescriptionList.vue'
 import SpinningGlobes from './SpinningGlobes.vue'
 
 
