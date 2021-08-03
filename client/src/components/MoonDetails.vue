@@ -2,7 +2,7 @@
   <div>
   <div class="selected-moon">
     <div>
-      <button v-on:click="returnPlanet(moon)" class="main-button">Back to {{ showAroundPlanet(moon) }}</button>
+      <button @click="returnPlanet(moon)" class="main-button">Back to {{ showAroundPlanet(moon) }}</button>
       <h2 v-if="moonName(moon) != 'Moon'">{{ moonName(moon) }} Moon</h2>
       <h2 v-if="moonName(moon) == 'Moon'">{{ moonName(moon) }}</h2>
       <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen planet" height="300px" />
@@ -13,8 +13,8 @@
       <div class="listed-moon-details">
         <p>Orbits: {{ showAroundPlanet(moon) }}</p>
         <div v-if="moon.semimajorAxis != 0">
-          <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{moon.semimajorAxis}} <span class="metric">km</span></p>
-          <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(moon.semimajorAxis)}} <span class="metric">miles</span></p>
+          <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{moon.semimajorAxis}} <span class="metric">km</span></p>
+          <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(moon.semimajorAxis)}} <span class="metric">miles</span></p>
         </div>
         <div v-else> 
           <p>Average Distance from Sun Not Available</p>
@@ -32,8 +32,8 @@
           <p>Time to Spin on Axis Not Available</p>
         </div>
         <div v-if="moon.equaRadius != 0">
-          <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} <span class="metric">km</span></p>
-          <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} <span class="metric">miles</span></p>
+          <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} <span class="metric">km</span></p>
+          <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} <span class="metric">miles</span></p>
         </div>
         <div v-else> 
           <p>Average Radius Not Available</p>
@@ -44,8 +44,6 @@
         <div v-else> 
           <p>Gravity Not Available</p>
         </div>
-      <!-- <p>Mass: {{ moon.mass.massValue}}</p> -->
-  <!--    <p><b>Volume</b>{{ moon.vol.volValue }}</p>-->
       </div>
     </div>
   </div>

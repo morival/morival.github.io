@@ -4,14 +4,14 @@
     <div class=header>
       <div class=logo>
         <h1>Cosmodex</h1>
-        <h4> By <span style="color: #940000">{{</span>The Curly Boys<span style="color: #940000">}}</span></h4>
+        <h4> By <span>{{</span>The Curly Boys<span>}}</span></h4>
       </div>
 
       <!-- main buttons here -->
       <div class="main-menu">
-        <button class="main-button" v-on:click="show = showPlanets"> View Cosmodex <span/></button>
-        <button class="main-button" v-on:click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
-        <button class="main-button" v-on:click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
+        <button class="main-button" @click="show = showPlanets"> View Cosmodex <span/></button>
+        <button class="main-button" @click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
+        <button class="main-button" @click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
       </div>
     </div>
 
@@ -198,7 +198,7 @@ body {
   /* height: 940px; */
   overflow: scroll;
   background-color: black;
-  background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg');
+  /* background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg'); */
   /* background-repeat:inherit; */
   background-size: 100%;
   background-attachment: fixed;
@@ -251,6 +251,10 @@ h4 {
 
 }
 
+span {
+  color: #940000;
+}
+
 #app {
   margin: 0;
   padding: 0;
@@ -267,7 +271,7 @@ h4 {
   padding: 0;
   width: 90%;
   height: 140px;
-  background: black;
+  /* background: black; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;  
@@ -299,13 +303,13 @@ h4 {
 .main-button:hover {
   color: crimson;
   cursor: pointer;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .main-button:active {
   color: crimson;
   border: none;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .main-button span {
@@ -322,7 +326,7 @@ h4 {
   color: rgb(192, 17, 52);
   width: auto;
   border: none;
-  content: "Click Me";
+  /* content: "Click Me"; */
   text-shadow: 5px 2px 20px rgba(0, 26, 73, 0.404);
   display: inline;
   position: relative;

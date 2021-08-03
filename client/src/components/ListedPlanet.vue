@@ -1,7 +1,7 @@
 <template>
     <div
         class="listed-planet"
-        v-on:click="handleClick()">
+        @click="handleClick()">
         <label 
             class="img-container"
             :id="planet.englishName">
@@ -10,7 +10,7 @@
                 type="checkbox"  
                 :value="`${planet.englishName}`" 
                 v-model="planetChecked" 
-                v-on:click="handleClick()"/>
+                @click="handleClick()"/>
             <img
                 v-bind:class="isActive"
                 v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
@@ -21,7 +21,7 @@
         <!-- <div 
             class="listed-planet"
             v-bind:class="showShadow"
-            v-on:click="handleClick()">
+            @click="handleClick()">
             <label 
                 class="img-container"
                 :id="planet.englishName">
@@ -30,7 +30,7 @@
                     type="checkbox"  
                     :value="`${planet.englishName}`" 
                     v-model="planetChecked" 
-                    v-on:click="handleClick()"/>
+                    @click="handleClick()"/>
                 <img
                     v-bind:class="isActive"
                     v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
@@ -88,9 +88,9 @@ export default {
 
 /* CHECKED STYLES */
 
-.img-container {
+/* .img-container {
     position: flex;
-}
+} */
 /* #Saturn img {
     width: 200px;
     max-width: 200px;

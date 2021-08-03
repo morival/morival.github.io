@@ -12,16 +12,16 @@
                     <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
                 </div>
                 <h5>Specification:</h5>
-                <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} <span class="metric">km</span></p>
-                <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} <span class="metric">miles</span></p>
+                <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} <span class="metric">km</span></p>
+                <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} <span class="metric">miles</span></p>
                 <p>Time to Orbit Sun (a year): {{planet.sideralOrbit}} days </p>
                 <p>Time to Spin on Axis (a day): {{Math.round(planet.sideralRotation)}} hours </p>
-                <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(planet.meanRadius)}} <span class="metric">km</span></p>
-                <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(planet.meanRadius)}} <span class="metric">miles</span></p>
+                <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(planet.meanRadius)}} <span class="metric">km</span></p>
+                <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(planet.meanRadius)}} <span class="metric">miles</span></p>
                 <p>Gravity: {{planet.gravity}} m/s² </p>
                 <p>Density: {{planet.density}} g/cm³ </p>
-                <p v-on:click="convertDistance = !convertDistance" v-show="convertDistance">Escape Velocity: {{(planet.escape)/1000}} <span class="metric">km/s</span></p>
-                <p v-on:click="convertDistance = !convertDistance" v-show="!convertDistance">Escape Velocity: {{milesConvertor(planet.escape)/1000}} <span class="metric">mi/s</span></p>
+                <p @click="convertDistance = !convertDistance" v-show="convertDistance">Escape Velocity: {{(planet.escape)/1000}} <span class="metric">km/s</span></p>
+                <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Escape Velocity: {{milesConvertor(planet.escape)/1000}} <span class="metric">mi/s</span></p>
             </div>
         </div>
         

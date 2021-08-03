@@ -1,12 +1,14 @@
 <template>
     <!-- this should consider the format of each item to be displayed -->
     <div class="view-cosmodex">
-        
-        <div class="filter-buttons">
-            <button v-on:click="compareDistance" class="main-button"> Filter By Distance from the Sun <span/></button>
-            <button v-on:click="compareSize" class="main-button"> Filter Planets by Size <span/></button>
-            <button v-on:click="compareDensity" class="main-button"> Filter Planets by Density <span/></button>
-            <button v-on:click="compareGravity" class="main-button"> Filter Planets by Gravity <span/></button>
+        <div v-show="filter === false" class="filter-buttons">
+            <button @click="showFilters" id="filter-btn" class="main-button"> Filter by: {{ isActive }} <span/></button>
+        </div>
+        <div v-show="filter === true" class="filter-buttons">
+            <button @click="compareDistance" class="main-button"> distance from the Sun <span/></button>
+            <button @click="compareSize" class="main-button"> size <span/></button>
+            <button @click="compareDensity" class="main-button"> density <span/></button>
+            <button @click="compareGravity" class="main-button">  gravity <span/></button>
         </div>
 
         <img id="sun-image" v-bind:class="{'sun-transition': showSun}" src="../assets/images/sun_slice.png">
@@ -32,6 +34,7 @@ export default {
     },
     data() {
         return {
+            filter: false,
             filterPlanets: null,
             isActive: "",
             showSun: false
@@ -55,22 +58,29 @@ export default {
         }
     },
     methods: {
+        showFilters: function(){
+            this.filter = true;
+        },
         compareDistance: function(){
+            this.filter = false;
             this.filterPlanets = this.sortByDistance;
             this.isActive = "distance";
             this.showSun = true;
         },
         compareSize: function(){
+            this.filter = false;
             this.filterPlanets = this.sortBySize;
             this.isActive = "size";
             this.showSun = false;
         },
         compareDensity: function(){
+            this.filter = false;
             this.filterPlanets = this.sortByDensity;
             this.isActive = "density";
             this.showSun = false;
         },
         compareGravity: function(){
+            this.filter = false;
             this.filterPlanets = this.sortByGravity;
             this.isActive = "gravity";
             this.showSun = false;
