@@ -97,21 +97,22 @@ export default {
 
 #moons-display {
     margin-right: 30px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    width: 160px;
+    /* width: 160px; */
     text-align: center;
 }
 
-#monns-display > h3 {
+#moons-display > h3 {
     text-align: center;
     color: white;
 }
-ul {
+#moons-display > ul {
   list-style-type: none;
   padding-inline-start: 0;
-  height: 400px;
-  overflow: scroll;
+  max-height: 400px;
+  overflow: overlay;
 }
 
 </style>

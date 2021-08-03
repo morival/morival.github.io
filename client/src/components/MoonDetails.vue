@@ -1,6 +1,6 @@
 <template>
   <div>
-  <div class="selected-moon">
+  <div class="selected-details">
     <div>
       <button @click="returnPlanet(moon)" class="btn">Back to {{ showAroundPlanet(moon) }}</button>
       <h2 v-if="moonName(moon) != 'Moon'">{{ moonName(moon) }} Moon</h2>

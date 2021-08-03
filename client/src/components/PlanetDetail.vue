@@ -1,7 +1,7 @@
 <template>
-    <div id="selected-planet" v-if="planet.isPlanet">
+    <div class="selected-details" v-if="planet.isPlanet">
         <div class="planet-container">
-            <div>
+            <div id="listed-planet-logo">
                 <h2>Planet {{planet.englishName}} </h2>
                 <spinning-globes :planet="planet"></spinning-globes>
             </div>
@@ -39,7 +39,6 @@
                 <button @click="convertDistance = !convertDistance" class="btn">Convert to miles</button>
             </div>
         </div>
-        
         <moon-list v-if="getMoons" :getMoons="getMoons"></moon-list>
     </div>
 </template>
@@ -72,28 +71,31 @@ export default {
 </script>
 
 <style>
-#selected-planet {
-    margin-top: 30px;
-    min-width: 1020px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: RGBA(255, 105, 180, 0.1);
+.selected-details {
+    margin: 30px 0;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: RGBA(255, 105, 180, 0.1);
     box-shadow: 5px 10px rgba(255, 255, 255, 0.342);
     border-radius: 6px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+}
 
+#listed-planet-logo {
+    padding: 0 30px;
 }
 
 #listed-planet-details {
-    margin-left: 30px;
+    /* margin-left: 30px; */
     margin-top: 20px;
-    width: 500px;
+    /* width: 500px; */
 }
 .planet-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* max-width: 650px; */
     /* z-index: 1; */
 }
 p {
