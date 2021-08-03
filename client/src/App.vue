@@ -4,14 +4,14 @@
     <div class=header>
       <div class=logo>
         <h1>Cosmodex</h1>
-        <h4> By <span>{{</span>The Curly Boys<span>}}</span></h4>
+        <h4> By <span class="brackets">{{</span>The Curly Boys<span class="brackets">}}</span></h4>
       </div>
 
       <!-- main buttons here -->
       <div class="main-menu">
-        <button class="main-button" @click="show = showPlanets"> View Cosmodex <span/></button>
-        <button class="main-button" @click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
-        <button class="main-button" @click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
+        <button class="btn" @click="show = showPlanets"> View Cosmodex <span/></button>
+        <button class="btn" @click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
+        <button class="btn" @click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
       </div>
     </div>
 
@@ -251,7 +251,7 @@ h4 {
 
 }
 
-span {
+.brackets {
   color: #940000;
 }
 
@@ -284,7 +284,7 @@ span {
   justify-content: flex-end;
 }
 
-.main-button {
+.btn {
   width: 300px;
   padding: 5px;
   padding-right: 20px;
@@ -300,19 +300,19 @@ span {
   
 }
 
-.main-button:hover {
+.btn:hover {
   color: crimson;
   cursor: pointer;
   /* background-color: black; */
 }
 
-.main-button:active {
+.btn:active {
   color: crimson;
   border: none;
   /* background-color: black; */
 }
 
-.main-button span {
+.btn span {
   color: rgb(192, 17, 52);
   width: auto;
   border: none;
@@ -322,7 +322,7 @@ span {
   transition: 0.1s;
 }
 
-.main-button span:after {
+.btn span:after {
   color: rgb(192, 17, 52);
   width: auto;
   border: none;
@@ -336,11 +336,11 @@ span {
   transition: 0.1s;
 }
 
-.main-button:hover span {
+.btn:hover span {
   padding-right: 15px;
 }
 
-.main-button:hover span:after {
+.btn:hover span:after {
   opacity: 1;
   right: 0;
 }

@@ -12,16 +12,31 @@
                     <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
                 </div>
                 <h5>Specification:</h5>
-                <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{planet.semimajorAxis}} <span class="metric">km</span></p>
-                <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(planet.semimajorAxis)}} <span class="metric">miles</span></p>
-                <p>Time to Orbit Sun (a year): {{planet.sideralOrbit}} days </p>
-                <p>Time to Spin on Axis (a day): {{Math.round(planet.sideralRotation)}} hours </p>
-                <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(planet.meanRadius)}} <span class="metric">km</span></p>
-                <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(planet.meanRadius)}} <span class="metric">miles</span></p>
-                <p>Gravity: {{planet.gravity}} m/s² </p>
-                <p>Density: {{planet.density}} g/cm³ </p>
-                <p @click="convertDistance = !convertDistance" v-show="convertDistance">Escape Velocity: {{(planet.escape)/1000}} <span class="metric">km/s</span></p>
-                <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Escape Velocity: {{milesConvertor(planet.escape)/1000}} <span class="metric">mi/s</span></p>
+                <p>Average Distance from Sun: 
+                    <span class="spec-value" v-if="convertDistance"> {{planet.semimajorAxis}} km</span>
+                    <span class="spec-value" v-else> {{milesConvertor(planet.semimajorAxis)}} miles</span>
+                </p>
+                <p>Time to Orbit Sun (a year):
+                    <span class="spec-value"> {{planet.sideralOrbit}} days</span>
+                </p>
+                <p>Time to Spin on Axis (a day):
+                    <span class="spec-value"> {{Math.round(planet.sideralRotation)}} hours</span>
+                </p>
+                <p>Average Radius: 
+                    <span class="spec-value" v-if="convertDistance"> {{Math.round(planet.meanRadius)}} km</span>
+                    <span class="spec-value" v-else> {{milesConvertor(planet.meanRadius)}} miles</span>
+                </p>
+                <p>Gravity:
+                    <span class="spec-value"> {{planet.gravity}} m/s²</span>
+                </p>
+                <p>Density:
+                    <span class="spec-value"> {{planet.density}} g/cm³</span>
+                </p>
+                <p>Escape Velocity: 
+                    <span class="spec-value" v-if="convertDistance"> {{(planet.escape)/1000}} km/s</span>
+                    <span class="spec-value" v-else> {{milesConvertor(planet.escape)/1000}} mi/s</span>
+                </p>
+                <button @click="convertDistance = !convertDistance" class="btn">Convert to miles</button>
             </div>
         </div>
         
@@ -106,8 +121,8 @@ h5 {
     margin-bottom: 0;
     text-shadow: 3px 3px 5px black;
 }
-.metric {
-    color: rgb(137, 150, 242);
+.spec-value {
+    color:khaki;
 }
 
 

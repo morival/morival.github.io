@@ -2,13 +2,13 @@
     <!-- this should consider the format of each item to be displayed -->
     <div class="view-cosmodex">
         <div v-show="filter === false" class="filter-buttons">
-            <button @click="showFilters" id="filter-btn" class="main-button"> Filter by: {{ isActive }} <span/></button>
+            <button @click="showFilters" id="filter-btn" class="btn"> Filter by: {{ isActive }} <span/></button>
         </div>
         <div v-show="filter === true" class="filter-buttons">
-            <button @click="compareDistance" class="main-button"> distance from the Sun <span/></button>
-            <button @click="compareSize" class="main-button"> size <span/></button>
-            <button @click="compareDensity" class="main-button"> density <span/></button>
-            <button @click="compareGravity" class="main-button">  gravity <span/></button>
+            <button @click="compareDistance" class="btn"> distance from the Sun <span/></button>
+            <button @click="compareSize" class="btn"> size <span/></button>
+            <button @click="compareDensity" class="btn"> density <span/></button>
+            <button @click="compareGravity" class="btn">  gravity <span/></button>
         </div>
 
         <img id="sun-image" v-bind:class="{'sun-transition': showSun}" src="../assets/images/sun_slice.png">

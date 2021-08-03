@@ -2,7 +2,7 @@
   <div>
   <div class="selected-moon">
     <div>
-      <button @click="returnPlanet(moon)" class="main-button">Back to {{ showAroundPlanet(moon) }}</button>
+      <button @click="returnPlanet(moon)" class="btn">Back to {{ showAroundPlanet(moon) }}</button>
       <h2 v-if="moonName(moon) != 'Moon'">{{ moonName(moon) }} Moon</h2>
       <h2 v-if="moonName(moon) == 'Moon'">{{ moonName(moon) }}</h2>
       <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen planet" height="300px" />

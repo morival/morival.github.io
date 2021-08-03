@@ -1,9 +1,9 @@
 <template>
     <div id="moons-display">
-        <button id="moons-button" class="main-button" @click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):        <span>       </span></button>
+        <button class="btn" @click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):        <span>       </span></button>
         <ul v-show="showMoons">
             <li v-for="(moon, index) in getMoons"  @click="moonSelected(moon)" :key="index">
-                <button class="moons-button"> {{moonName(moon)}} </button>
+                <button class="btn"> {{moonName(moon)}} </button>
             </li>
         </ul>
     </div>
