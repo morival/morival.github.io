@@ -96,7 +96,7 @@ export default {
 
 
 #moons-display {
-    margin-right: 30px;
+    /* margin-right: 30px; */
     margin-top: 20px;
     display: flex;
     flex-direction: column;

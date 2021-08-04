@@ -29,7 +29,8 @@
         :planets="planets" 
         :planet="isSelected" 
         :getMoons="getMoons()" 
-        :descriptions="descriptions" 
+        :descriptions="descriptions"
+        :milesConvertor="({props}) => Math.round(props/ 1.609)"
         v-show="show === showPlanets"/>
     </div>
     <!-- moon details starts here -->
@@ -38,7 +39,8 @@
         :moon="selectedMoon" 
         :isSelected="isSelected" 
         :planets="planets" 
-        :planet="isSelected"/>
+        :planet="isSelected"
+        :milesConvertor="({props}) => Math.round(props/ 1.609)"/>
     </div>
 
     <!-- animation starts here -->
@@ -177,8 +179,10 @@ export default {
         })
         .then(res => this.descriptions = res.data)
         .then(console.log(this.descriptions))
-    },
-    
+    // },
+    // milesConvertor: function(number){
+    //   return Math.round(number/ 1.609)
+    }
     
   }   
 }
@@ -343,6 +347,13 @@ h4 {
 .btn:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.khaki {
+    color:khaki;
+}
+.red {
+    color: red;
 }
 
   

@@ -1,45 +1,47 @@
 <template>
-    <div class="selected-details" v-if="planet.isPlanet">
-        <div class="planet-container">
-            <div id="listed-planet-logo">
+    <div class="details-container" v-if="planet.isPlanet">
+        <div class="main-details">
+            <div class="logo-details">
                 <h2>Planet {{planet.englishName}} </h2>
                 <spinning-globes :planet="planet"></spinning-globes>
             </div>
-            <div id="listed-planet-details">
-                
+            <div class="spec-details">
                 <div v-for="(body, index) in descriptions" :key="index">
                     <h5 v-if="body.name === planet.englishName">Description:</h5>
-                    <p v-if="body.name === planet.englishName"> {{ body.definition }}</p>
+                    <p v-if="body.name === planet.englishName"> {{body.definition}}</p>
                 </div>
                 <h5>Specification:</h5>
                 <p>Average Distance from Sun: 
-                    <span class="spec-value" v-if="convertDistance"> {{planet.semimajorAxis}} km</span>
-                    <span class="spec-value" v-else> {{milesConvertor(planet.semimajorAxis)}} miles</span>
+                    <span class="khaki" v-if="convertDistance"> {{planet.semimajorAxis}} km</span>
+                    <span class="khaki" v-else> {{milesConvertor({props: planet.semimajorAxis})}} miles</span>
                 </p>
                 <p>Time to Orbit Sun (a year):
-                    <span class="spec-value"> {{planet.sideralOrbit}} days</span>
+                    <span class="khaki"> {{planet.sideralOrbit}} days</span>
                 </p>
                 <p>Time to Spin on Axis (a day):
-                    <span class="spec-value"> {{Math.round(planet.sideralRotation)}} hours</span>
+                    <span class="khaki"> {{Math.round(planet.sideralRotation)}} hours</span>
                 </p>
                 <p>Average Radius: 
-                    <span class="spec-value" v-if="convertDistance"> {{Math.round(planet.meanRadius)}} km</span>
-                    <span class="spec-value" v-else> {{milesConvertor(planet.meanRadius)}} miles</span>
+                    <span class="khaki" v-if="convertDistance"> {{Math.round(planet.meanRadius)}} km</span>
+                    <span class="khaki" v-else> {{milesConvertor({props: planet.meanRadius})}} miles</span>
                 </p>
                 <p>Gravity:
-                    <span class="spec-value"> {{planet.gravity}} m/s²</span>
+                    <span class="khaki"> {{planet.gravity}} m/s²</span>
                 </p>
                 <p>Density:
-                    <span class="spec-value"> {{planet.density}} g/cm³</span>
+                    <span class="khaki"> {{planet.density}} g/cm³</span>
                 </p>
                 <p>Escape Velocity: 
-                    <span class="spec-value" v-if="convertDistance"> {{(planet.escape)/1000}} km/s</span>
-                    <span class="spec-value" v-else> {{milesConvertor(planet.escape)/1000}} mi/s</span>
+                    <span class="khaki" v-if="convertDistance"> {{(planet.escape)/1000}} km/s</span>
+                    <span class="khaki" v-else> {{milesConvertor({props: planet.escape})/1000}} mi/s</span>
                 </p>
                 <button @click="convertDistance = !convertDistance" class="btn">Convert to miles</button>
             </div>
         </div>
-        <moon-list v-if="getMoons" :getMoons="getMoons"></moon-list>
+        <moon-list 
+        v-if="getMoons" 
+        :getMoons="getMoons"/>
+        <div class="moon-list-slot" v-else/>
     </div>
 </template>
 
@@ -51,7 +53,7 @@ import SpinningGlobes from './SpinningGlobes.vue'
 
 export default {
     name: 'planet-detail',
-    props: ['planet', 'getMoons', 'moons', 'descriptions', 'planets'],
+    props: ['planet', 'getMoons', 'moons', 'descriptions', 'planets', 'milesConvertor'],
     data() {
         return {
             convertDistance: true
@@ -60,18 +62,12 @@ export default {
     components: {
         'moon-list': MoonList,
         'spinning-globes': SpinningGlobes
-    },
-    methods: {
-        milesConvertor: function(number){
-            return Math.round(number/ 1.609)
-        }
     }
-
 }
 </script>
 
 <style>
-.selected-details {
+.details-container {
     margin: 30px 0;
     padding: 10px;
     display: flex;
@@ -82,21 +78,24 @@ export default {
     border-radius: 6px;
 }
 
-#listed-planet-logo {
+.logo-details {
     padding: 0 30px;
 }
 
-#listed-planet-details {
+.spec-details {
     /* margin-left: 30px; */
     margin-top: 20px;
     /* width: 500px; */
 }
-.planet-container {
+.main-details {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     /* max-width: 650px; */
     /* z-index: 1; */
+}
+.moon-list-slot {
+    width: 320px;
 }
 p {
     font-family: 'VT323', monospace;
@@ -122,9 +121,6 @@ h5 {
     color: white;
     margin-bottom: 0;
     text-shadow: 3px 3px 5px black;
-}
-.spec-value {
-    color:khaki;
 }
 
 

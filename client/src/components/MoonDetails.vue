@@ -1,54 +1,60 @@
 <template>
-  <div>
-  <div class="selected-details">
-    <div>
-      <button @click="returnPlanet(moon)" class="btn">Back to {{ showAroundPlanet(moon) }}</button>
-      <h2 v-if="moonName(moon) != 'Moon'">{{ moonName(moon) }} Moon</h2>
-      <h2 v-if="moonName(moon) == 'Moon'">{{ moonName(moon) }}</h2>
-      <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen planet" height="300px" />
-    </div>
-    <div class="moon-container">
-      <!-- <div class="moon-label">
-      </div> -->
-      <div class="listed-moon-details">
-        <p>Orbits: {{ showAroundPlanet(moon) }}</p>
+  <div class="details-container">
+    <div class="main-details">
+      <div class="logo-details">
+        <h2 v-if="moonName(moon) != 'Moon'">{{ moonName(moon) }} moon</h2>
+        <h2 v-else>Moon</h2>
+        <img v-bind:src="require(`../assets/images/Moon.png`)" title="picture" alt="picture of chosen moon" height="300px" />
+      </div>
+      <div class="spec-details">
+        <h5>Specification:</h5>
+        <p>Orbits:
+          <span class="khaki"> {{ showAroundPlanet(moon) }} </span>
+        </p>
+
         <div v-if="moon.semimajorAxis != 0">
-          <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Distance from Sun: {{moon.semimajorAxis}} <span class="metric">km</span></p>
-          <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Distance from Sun: {{milesConvertor(moon.semimajorAxis)}} <span class="metric">miles</span></p>
+          <p>Average Distance from Sun:
+            <span class="khaki" v-if="convertDistance"> {{moon.semimajorAxis}} km</span>
+            <span class="khaki" v-else> {{milesConvertor({props: moon.semimajorAxis})}} miles</span>
+          </p>
         </div>
-        <div v-else> 
-          <p>Average Distance from Sun Not Available</p>
-        </div>
+        <div v-else><p class="red"> Average Distance from Sun Not Available </p></div>
+
         <div v-if="moon.sideralOrbit != 0">
-          <p>Time to Orbit the Planet: {{moon.sideralOrbit}} days </p>
+          <p>Time to Orbit the Planet:
+            <span class="khaki"> {{moon.sideralOrbit}} days </span>
+          </p>
         </div>
-        <div v-else> 
-          <p>Time to Orbit the Planet Not Available</p>
-        </div>
+        <div v-else><p class="red">Time to Orbit the Planet Not Available</p></div>
+
         <div v-if="moon.sideralRotation != 0">
-          <p>Time to Spin on Axis (a day): {{Math.round(moon.sideralRotation)}} hours </p>
+          <p>Time to Spin on Axis (a day):
+            <span class="khaki">  {{Math.round(moon.sideralRotation)}} hours </span>
+          </p>
         </div>
-        <div v-else> 
-          <p>Time to Spin on Axis Not Available</p>
-        </div>
+        <div v-else><p class="red">Time to Spin on Axis Not Available</p></div>
+
         <div v-if="moon.equaRadius != 0">
-          <p @click="convertDistance = !convertDistance" v-show="convertDistance">Average Radius: {{Math.round(moon.equaRadius)}} <span class="metric">km</span></p>
-          <p @click="convertDistance = !convertDistance" v-show="!convertDistance">Average Radius: {{milesConvertor(moon.equaRadius)}} <span class="metric">miles</span></p>
+          <p> Average Radius:
+            <span class="khaki" v-if="convertDistance"> {{Math.round(moon.equaRadius)}} km </span>
+            <span class="khaki" v-else> {{milesConvertor({props: moon.equaRadius})}} miles</span>
+          </p>
         </div>
-        <div v-else> 
-          <p>Average Radius Not Available</p>
-        </div>
+        <div v-else><p class="red">Average Radius Not Available</p></div>
+
         <div v-if="moon.gravity != 0">
-          <p>Gravity: {{ moon.gravity }}m/s² </p>
+          <p>Gravity: 
+            <span class="khaki"> {{ moon.gravity }}m/s² </span>
+          </p>
         </div>
-        <div v-else> 
-          <p>Gravity Not Available</p>
-        </div>
+        <div v-else><p class="red">Gravity Not Available</p></div>
+        <button @click="convertDistance = !convertDistance" class="btn">Convert to miles</button>
       </div>
     </div>
+    <div>
+      <button @click="returnPlanet(moon)" class="btn">Back to {{ showAroundPlanet(moon) }}</button>
+    </div>
   </div>
-  </div>
-  
 </template>
 
 <script>
@@ -56,11 +62,14 @@
 
   export default {
     name: 'moon-detail',
-    props: ['moon', 'isSelected', 'planets'],
+    props: ['moon', 'isSelected', 'planets', 'milesConvertor'],
     data() {
         return {
             convertDistance: true
         }
+    },
+    computed: {
+
     },
     methods: {
       moonName: function(moon){
@@ -78,10 +87,7 @@
         let orbitsPlanetRel = moon.aroundPlanet.rel;
         let orbitsPlanet = this.planets.find(planet => planet.rel === orbitsPlanetRel);
         return orbitsPlanet.englishName;
-      },
-      milesConvertor: function(number){
-            return Math.round(number/ 1.609)
-        }
+      }
     },
   }
 </script>
