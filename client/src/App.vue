@@ -2,9 +2,9 @@
   <div id="app">
     <!-- header/logo starts here -->
     <div class=header>
-      <div class=logo>
-        <h1>Cosmodex</h1>
-        <h4> By <span class="brackets">{{</span>The Curly Boys<span class="brackets">}}</span></h4>
+      <div class=logo-container>
+        <h1 class="logo-text" id="logo-h1">Cosmodex</h1>
+        <h4 class="logo-text" id="logo-h4"> By <span class="brackets">{{</span>The Curly Boys<span class="brackets">}}</span></h4>
       </div>
 
       <!-- main buttons here -->
@@ -16,15 +16,14 @@
     </div>
 
     <!-- // list of planets starts here -->
-    <div v-if="planets.length">
       <planet-list 
+        v-if="planets.length"
         :planets="planets"
         v-show="show === showPlanets"/>
-    </div>
+
     <!-- planet details starts here -->
-    <div v-if="show === showPlanets">
       <planet-detail 
-        v-if="isSelected" 
+        v-if="isSelected && show === showPlanets" 
         :moons="moons" 
         :planets="planets" 
         :planet="isSelected" 
@@ -32,16 +31,15 @@
         :descriptions="descriptions"
         :milesConvertor="({props}) => Math.round(props/ 1.609)"
         v-show="show === showPlanets"/>
-    </div>
+
     <!-- moon details starts here -->
-    <div v-if="showMoon">
-      <moon-detail 
+      <moon-detail
+        v-if="showMoon"
         :moon="selectedMoon" 
         :isSelected="isSelected" 
         :planets="planets" 
         :planet="isSelected"
         :milesConvertor="({props}) => Math.round(props/ 1.609)"/>
-    </div>
 
     <!-- animation starts here -->
     <div class="planet-animation">
@@ -211,48 +209,29 @@ body {
   align-content: center;
   /* z-index: -2; */
 }
-/* } //  background-image: url("paper.gif"); */
+
 .header {
   display: flex;
-  align-items: flex-end;
+  margin-top: 30px;
   justify-content: space-between;
 }
 
-/* .logo {
-  z-index: 1;
-} */
-
-h1 {
+.logo-text {
   color: black;
   text-shadow: 0 2px 10px rgb(0, 89, 255), 0 2px 30px rgba(255, 255, 255, 0.733);
-  align-content: center;
+  position: relative;
   font-family: 'Gugi', cursive;
-  position: relative;
-  border: 0;
   margin: 0;
-  margin-top: 30px;
-  margin-left: 30px;
-  position: relative;
-  align-content: left;
-  align-content: top;
+}
+#logo-h1 {
+  align-content: center;
   font-size: 100px;
-
 }
 
-h4 {
-  color: black;
-  text-shadow: 0 2px 10px rgb(0, 89, 255), 0 2px 20px rgba(255, 255, 255, 0.863);
-  border: 0;
-  margin: 0;
-  padding-top: 5px;
-  margin-left: 40px;
-  top: -25px;
+#logo-h4 {
+  margin: 5px 10px;
   position: relative;
-  align-content: left;
-  align-content: top;
-  
   font-size: 20px;
-
 }
 
 .brackets {
@@ -268,19 +247,6 @@ h4 {
   margin:auto;
 }
 
-.planet-list {
-  margin: 15px 0;
-  margin-left: 5%;
-  border: 0;
-  padding: 0;
-  width: 90%;
-  height: 140px;
-  /* background: black; */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;  
-  align-items: center;
-}
 
 .main-menu {
   display: flex;
@@ -289,7 +255,7 @@ h4 {
 }
 
 .btn {
-  width: 300px;
+  width: 200px;
   padding: 5px;
   padding-right: 20px;
   margin: 10px;
@@ -316,7 +282,7 @@ h4 {
   /* background-color: black; */
 }
 
-.btn span {
+/* .btn span {
   color: rgb(192, 17, 52);
   width: auto;
   border: none;
@@ -324,7 +290,7 @@ h4 {
   display: inline;
   position: relative;
   transition: 0.1s;
-}
+} */
 
 .btn span:after {
   color: rgb(192, 17, 52);
@@ -356,5 +322,20 @@ h4 {
     color: red;
 }
 
+@media only screen and (max-width: 1024px) {
+    .header {
+      /* position: sticky;
+      top: 30px; */
+      position:fixed;
+      width: 90%;
+      z-index: 3;
+    }
+    #logo-h1 {
+      font-size: 60px;
+    }
+    #logo-h4 {
+      font-size: 16px;
+    }
+}
   
 </style>

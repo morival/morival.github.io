@@ -1,9 +1,9 @@
 <template>
     <div id="moons-display">
-        <button class="btn" @click="showMoons = !showMoons">Moons ({{numberOfMoons()}}):        <span>       </span></button>
+        <!-- <button class="btn" @click="showMoons = !showMoons">{{numberOfMoons()}} moons<span/></button> -->
         <ul v-show="showMoons">
             <li v-for="(moon, index) in getMoons"  @click="moonSelected(moon)" :key="index">
-                <button class="btn"> {{moonName(moon)}} </button>
+                <button class="btn"> {{moonName(moon)}} <span/></button>
             </li>
         </ul>
     </div>
@@ -14,25 +14,24 @@ import {eventBus} from '@/main';
 
 export default {
   name: 'moon-list',
-  props: ['getMoons'],
+  props: ['getMoons', 'showMoons'],
   data() {
     return {
-      showMoons: false,
       showMoonDetail: false,
       selectedMoon: ''
     }
   },
   methods: {
     moonName: function(moon){
-        if (moon.englishName !== "") {
-          return moon.englishName
-        } else {
-          return moon.name
-        }
-      },
-    numberOfMoons: function () {
-      return Object.keys(this.getMoons).length
+      if (moon.englishName !== "") {
+        return moon.englishName
+      } else {
+        return moon.name
+      }
     },
+    // numberOfMoons: function () {
+    //   return Object.keys(this.getMoons).length
+    // },
     moonSelected: function (moon) {
       eventBus.$emit('moon-selected', moon)
     }

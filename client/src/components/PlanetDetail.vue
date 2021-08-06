@@ -5,7 +5,7 @@
                 <h2>Planet {{planet.englishName}} </h2>
                 <spinning-globes :planet="planet"></spinning-globes>
             </div>
-            <div class="spec-details">
+            <div class="spec-details" v-if="!showMoons">
                 <div v-for="(body, index) in descriptions" :key="index">
                     <h5 v-if="body.name === planet.englishName">Description:</h5>
                     <p v-if="body.name === planet.englishName"> {{body.definition}}</p>
@@ -35,12 +35,13 @@
                     <span class="khaki" v-if="convertDistance"> {{(planet.escape)/1000}} km/s</span>
                     <span class="khaki" v-else> {{milesConvertor({props: planet.escape})/1000}} mi/s</span>
                 </p>
-                <button @click="convertDistance = !convertDistance" class="btn">Convert to miles</button>
+                <button @click="convertDistance = !convertDistance" class="btn">Convert to miles<span/></button>
             </div>
         </div>
-        <moon-list 
-        v-if="getMoons" 
-        :getMoons="getMoons"/>
+        <div v-if="getMoons">
+            <button class="btn" @click="showMoons = !showMoons">{{numberOfMoons()}} moon<span v-if="numberOfMoons()>1">s</span>:<span/></button>
+            <moon-list :getMoons="getMoons" :showMoons="showMoons"/>
+        </div>
         <div class="moon-list-slot" v-else/>
     </div>
 </template>
@@ -48,6 +49,7 @@
 <script>
 import MoonList from './MoonList.vue'
 import SpinningGlobes from './SpinningGlobes.vue'
+import { eventBus } from '@/main.js';
 
 
 
@@ -56,7 +58,20 @@ export default {
     props: ['planet', 'getMoons', 'moons', 'descriptions', 'planets', 'milesConvertor'],
     data() {
         return {
-            convertDistance: true
+            convertDistance: true,
+            showMoons: false,
+        }
+    },
+    mounted() {
+        // eventBus.$on('moon-selected', moon => {
+        //     this.selectedMoon = moon;
+        //     this.showMoon = true;
+        //     this.isSelected = null;
+        // });
+    },
+    methods: {
+        numberOfMoons: function () {
+            return Object.keys(this.getMoons).length
         }
     },
     components: {
@@ -122,6 +137,13 @@ h5 {
     margin-bottom: 0;
     text-shadow: 3px 3px 5px black;
 }
-
+@media only screen and (max-width: 1024px) {
+    .details-container {
+        position: fixed;
+        margin-left: 100px;
+        bottom: 0;
+        z-index: 0;
+    }
+}
 
 </style>
