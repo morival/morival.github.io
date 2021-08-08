@@ -158,7 +158,7 @@ export default {
     .sun-image {
         /* background-image: url(/img/sun_slice.52a37a0e.png); */
         /* make the Sun's glow transparent */
-        mask-image: linear-gradient(to left, transparent 10%, black 30%);
+        mask-image: linear-gradient(to left, transparent 0%, black 25%);
         margin-left: -200px;
         margin-top: -850px;
         transform: rotate(90deg);

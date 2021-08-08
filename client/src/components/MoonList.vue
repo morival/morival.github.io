@@ -110,7 +110,7 @@ export default {
 #moons-display > ul {
   list-style-type: none;
   padding-inline-start: 0;
-  max-height: 400px;
+  max-height: 300px;
   overflow: overlay;
 }
 

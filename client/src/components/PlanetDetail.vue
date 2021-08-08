@@ -37,12 +37,12 @@
                 </p>
                 <button @click="convertDistance = !convertDistance" class="btn">Convert to miles<span/></button>
             </div>
+            <div v-if="getMoons" class="moon-btn-container">
+                <button class="btn" @click="showMoons = !showMoons">{{numberOfMoons()}} moon<span v-if="numberOfMoons()>1">s</span>:<span/></button>
+                <moon-list :getMoons="getMoons" :showMoons="showMoons"/>
+            </div>
+            <div class="moon-list-slot" v-else/>
         </div>
-        <div v-if="getMoons">
-            <button class="btn" @click="showMoons = !showMoons">{{numberOfMoons()}} moon<span v-if="numberOfMoons()>1">s</span>:<span/></button>
-            <moon-list :getMoons="getMoons" :showMoons="showMoons"/>
-        </div>
-        <div class="moon-list-slot" v-else/>
     </div>
 </template>
 
@@ -83,7 +83,7 @@ export default {
 
 <style>
 .details-container {
-    margin: 30px 0;
+    margin: 30px;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -100,7 +100,7 @@ export default {
 .spec-details {
     /* margin-left: 30px; */
     margin-top: 20px;
-    /* width: 500px; */
+    width: 360px;
 }
 .main-details {
     display: flex;
@@ -109,6 +109,11 @@ export default {
     /* max-width: 650px; */
     /* z-index: 1; */
 }
+/* .moon-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+} */
 .moon-list-slot {
     width: 320px;
 }
@@ -143,6 +148,12 @@ h5 {
         margin-left: 100px;
         bottom: 0;
         z-index: 0;
+    }
+    
+}
+@media only screen and (max-width: 932px) {
+    p {
+        padding-top: 7px;
     }
 }
 

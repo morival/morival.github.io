@@ -4,12 +4,12 @@
     <div class=header>
       <div class=logo-container>
         <h1 class="logo-text" id="logo-h1">Cosmodex</h1>
-        <h4 class="logo-text" id="logo-h4"> By <span class="brackets">{{</span>The Curly Boys<span class="brackets">}}</span></h4>
+        <h4 class="logo-text" id="logo-h4"> Solar System By <span class="brackets">{{</span>The Curly Boys<span class="brackets">}}</span></h4>
       </div>
 
       <!-- main buttons here -->
       <div class="main-menu">
-        <button class="btn" @click="show = showPlanets"> View Cosmodex <span/></button>
+        <button class="btn" @click="show = showPlanets"> Planets <span/></button>
         <button class="btn" @click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
         <button class="btn" @click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
       </div>
@@ -225,13 +225,13 @@ body {
 }
 #logo-h1 {
   align-content: center;
-  font-size: 100px;
+  font-size: 30px;
 }
 
 #logo-h4 {
-  margin: 5px 10px;
+  /* margin: 5px 10px; */
   position: relative;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .brackets {
@@ -250,7 +250,7 @@ body {
 
 .main-menu {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: flex-end;
 }
 
