@@ -6,9 +6,6 @@ const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js')
 
-// const fetch = require('node-fetch');
-
-
 app.use(cors())
 app.use(parser.json())
 
