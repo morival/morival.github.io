@@ -1,19 +1,54 @@
-<template>
-  <div id="app">
+<template>    
+  <v-app id="inspire">
     <!-- header/logo starts here -->
-    <div class=header>
-      <div class=logo-container>
-        <h1 class="logo-text" id="logo-h1">Cosmodex</h1>
-        <h4 class="logo-text" id="logo-h4"> Solar System By <span class="brackets">{{</span>The Curly Boys<span class="brackets">}}</span></h4>
-      </div>
+    <!-- <div class=header> -->
+      <v-app-bar
+      app>
+        <v-card
+        class="d-flex justify-space-between mb-6"
+        style="width: 100%;"
+        :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-4'"
+        flat
+        tile>
+        <!-- <div class=logo-container> -->
+          <v-toolbar-title>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="text-h6">
+                  Cosmodex
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  Our Solar System
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-toolbar-title>
+          <v-app-bar-nav-icon v-show="!drawer" @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <!-- </div> -->
+        </v-card>
+      </v-app-bar>
 
       <!-- main buttons here -->
-      <div class="main-menu">
-        <button class="btn" @click="show = showPlanets"> Planets <span/></button>
-        <button class="btn" @click="show = showAnimation; showMoon=false"> Solar System In Action <span/></button>
-        <button class="btn" @click="show = showGlossary; showMoon=false"> What Does That Mean?! <span/></button>
-      </div>
-    </div>
+      <!-- <div class="main-menu"> -->
+      <v-navigation-drawer
+      v-model="drawer"
+      temporary
+      right
+      app>
+        <v-list
+        dense
+        nav>
+          <v-list-item
+          v-for="item in drowerItems"
+          :key="item.title"
+          link>
+            <v-list-item-content @click="show = item.link; drawer = !drawer">
+              <v-list-item-title> {{item.title}} </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+    <!-- </div> -->
 
     <!-- // list of planets starts here -->
       <planet-list 
@@ -34,7 +69,7 @@
 
     <!-- moon details starts here -->
       <moon-detail
-        v-if="showMoon"
+        v-if="showMoon && show === showPlanets"
         :moon="selectedMoon" 
         :isSelected="isSelected" 
         :planets="planets" 
@@ -54,7 +89,7 @@
         :descriptions="descriptions" 
         v-show="show === showGlossary"/>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -64,12 +99,11 @@ import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
 import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
-// import HubbleServices from './services/HubbleServices.js'
+import HubbleServices from './services/HubbleServices.js'
 import MoonDetails from '@/components/MoonDetails';
 import Glossary from '@/components/Glossary.vue';
 import { eventBus } from '@/main.js';
-import axios from 'axios'
-// import VueAxios from 'vue-axios'
+import axios from 'axios';
 
 
 export default {
@@ -84,6 +118,12 @@ export default {
   },
   data(){
     return {
+      drawer: null,
+      drowerItems: [
+        { title: 'Planets', link: 1 },
+        { title: 'Animation', link: 2},
+        { title: 'Glossary', link: 3}
+      ],
       planets: [],
       moons: [],
       isSelected: null,
@@ -99,6 +139,8 @@ export default {
   mounted(){
     this.getPlanets();
     this.getDescriptions();
+
+    // Activates description of selected planet
     eventBus.$on('planet-selected', planet => {
       if (this.isSelected !== planet) {
         this.isSelected = planet;
@@ -107,21 +149,21 @@ export default {
         this.isSelected = null;
       }
     });
-
+    // Activates description of selected moon
     eventBus.$on('moon-selected', moon => {
       this.selectedMoon = moon;
       this.showMoon = true;
       this.isSelected = null;
-      });
-    
+    });
+    // Returns to mother planet of the previously selected moon
     eventBus.$on('return-planet', orbitsPlanet => {
       this.isSelected = this.planets.find(planet => planet.rel === orbitsPlanet);
       this.showMoon = false;
-      
     });
   },
 
   methods: {
+    // Gets all bodies (planets and moons) and set them in the right data arrays
     getPlanets: function(){
       let planetTemp = []
       fetch('https://api.le-systeme-solaire.net/rest/bodies/')
@@ -135,8 +177,9 @@ export default {
             }
             else if (!body.isPlanet) {
               this.moons.push(body);
+            }
           }
-        }}
+        }
       });
     },
 
@@ -147,41 +190,14 @@ export default {
       return this.moons.filter(function(moon) {
         return planetsRel.indexOf(moon.rel) != -1;
         });
-        // console.log(this.description);
       }
     },
-    // getDescriptions: function(){
-    //   HubbleServices.getDescriptions()
-    //   .then(data => this.descriptions = data)
-    // },
-    
-    async getDescriptions(){
-      axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-      const url = 'https://hubblesite.org/api/v3/glossary';
-      const headers = { 
-        // 'Access-Control-Allow-Credentials': 'true',
-        // 'Access-Control-Allow-Headers': "Origin, Content-Type, X-Auth-Token",
-        // 'Content-Type': 'text/html; charset=utf-8',
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Origins': '*'
-        // 'Access-Control-Allow-Methods' : 'GET'
-        };
-      // const response = await axios.get(url);
-      // const results = response.data.results;
-      // console.log(response);
-      
-      const response = axios.get(url, {
-        headers
-        // mode:'cors',
-        // headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': "*"}
-        })
-        .then(res => this.descriptions = res.data)
-        .then(console.log(this.descriptions))
-    // },
-    // milesConvertor: function(number){
-    //   return Math.round(number/ 1.609)
+
+    // Gets all descriptions from MongoDB
+    getDescriptions: function(){
+      HubbleServices.getDescriptions()
+      .then(data => this.descriptions = data)
     }
-    
   }   
 }
 </script>
@@ -197,8 +213,6 @@ body {
   margin: 0;
   border: 0;
   padding: 0;
-  /* height: 940px; */
-  /* overflow: scroll; */
   background-color: black;
   /* background-image: url('../src/assets/images/d099fbe1334992232264f479a516983e.jpg'); */
   /* background-repeat:inherit; */
@@ -207,13 +221,13 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
-  /* z-index: -2; */
 }
 
 .header {
   display: flex;
   margin-top: 30px;
   justify-content: space-between;
+  z-index: 3;
 }
 
 .logo-text {
@@ -331,11 +345,12 @@ body {
       z-index: 3;
     }
     #logo-h1 {
-      font-size: 60px;
+      /* font-size: 60px; */
     }
     #logo-h4 {
-      font-size: 16px;
+      /* font-size: 16px; */
     }
 }
   
 </style>
+

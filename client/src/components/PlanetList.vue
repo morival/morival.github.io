@@ -102,13 +102,14 @@ export default {
 .filter-buttons {
     right: 70px;
     display: flex;
+    z-index: 3;
     /* margin: 0 20px 20px 0; */
 }
 .sun-image {
     position: fixed;
     width: 373px;
     height: 1258px;
-    z-index: -1;
+    /* z-index: 2; */
     margin-top: -450px;
     margin-left: -500px;
     transition: all 1s ease-out;
@@ -129,12 +130,12 @@ export default {
   flex-direction: row;
   justify-content: space-around;  
   align-items: center;
+  z-index: 3;
 }
 
 @media only screen and (max-width: 1024px) {
-    .view-cosmodex {
-      /* margin-top: 200px; */
-    }
+    /* .view-cosmodex {
+    } */
     .planet-list, .filter-buttons {
         flex-direction: column;
     }
@@ -153,7 +154,7 @@ export default {
         top: 210px;
         right: 5%;
         background-color: black;
-        z-index: 2;
+        /* z-index: 2; */
     }
     .sun-image {
         /* background-image: url(/img/sun_slice.52a37a0e.png); */

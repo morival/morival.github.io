@@ -49,7 +49,7 @@ export default {
         background-size: cover;
 		background-repeat: repeat-x;
         box-shadow: -20px -20px 50px 2px #000 inset, 0 0 20px 2px #000 inset;
-        animation: circulate 10s linear infinite;
+        animation: circulate 15s linear infinite;
 		transform: translate(-50%, 0) rotate(-20deg);
     }
 

@@ -119,10 +119,9 @@ export default {
 }
 p {
     font-family: 'VT323', monospace;
-    font-size: 2;
     border: 0;
     margin: 0;
-    padding-top: 20px;
+    padding: 5px 0;
     color: white;
     text-shadow: 3px 3px 5px black;
 }
@@ -140,6 +139,7 @@ h3 {
 h5 {
     color: white;
     margin-bottom: 0;
+    padding-top: 5px;
     text-shadow: 3px 3px 5px black;
 }
 @media only screen and (max-width: 1024px) {
