@@ -1,25 +1,52 @@
 <template>
-    <!-- this should consider the format of each item to be displayed -->
-    <div class="view-cosmodex">
-        <div v-show="filter === false" class="filter-buttons">
+    <!-- Filter Drawer -->
+    <v-navigation-drawer permanent>
+    <!-- <div class="view-cosmodex"> -->
+        <v-menu>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                color="primary"
+                dark
+                v-bind="attrs"
+                v-on="on">
+                    Filter by: {{ isActive }}
+                </v-btn>
+            </template>
+            <v-list>
+                <v-list-item
+                v-for="(filterType, index) in filterTypes"
+                :key="index"
+                link>
+                    <v-list-item-content @click="filterType.compare">
+                        <v-list-item-title>{{ filterType.title }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-menu>
+        <!-- <div v-show="filter === false" class="filter-buttons">
             <button @click="showFilters" id="filter-btn" class="btn"> Filter by: {{ isActive }} <span/></button>
         </div>
         <div v-show="filter === true" class="filter-buttons">
             <button @click="compareDistance" class="btn"> distance from the Sun <span/></button>
             <button @click="compareSize" class="btn"> size <span/></button>
             <button @click="compareDensity" class="btn"> density <span/></button>
-            <button @click="compareGravity" class="btn">  gravity <span/></button>
-        </div>
-        <div class="sun-image" v-bind:class="{'sun-transition': showSun}" :style="{'background-image': `url(${require('../assets/images/sun_slice.png')})`}"/>
-        <!-- <img class="sun-image" v-bind:class="{'sun-transition': showSun}" src="../assets/images/sun_slice.png"> -->
-        <div class="planet-list" v-if="planets.length">
+            <button @click="compareGravity" class="btn"> gravity <span/></button>
+        </div> -->
+        <v-divider></v-divider>
+        <!-- <div class="sun-image" v-bind:class="{'sun-transition': showSun}" :style="{'background-image': `url(${require('../assets/images/sun_slice.png')})`}"/> -->
+    <!-- List of Planets -->
+        <v-list class="d-flex flex-column align-center">
             <listed-planet 
-            v-for="(planet, index) in filterPlanets" :planet="planet" :key="index" 
+            v-for="(planet, index) in filterPlanets" 
+            :planet="planet" 
+            :key="index" 
             :isActive="isActive"/>
-        </div>
-    
-    </div>
-    
+        </v-list>
+        <!-- <div class="planet-list" v-if="planets.length">
+            
+        </div> -->
+    <!-- </div> -->
+    </v-navigation-drawer>
 </template>
 
 <script>
@@ -36,6 +63,12 @@ export default {
     data() {
         return {
             filter: false,
+            filterTypes: [
+                { title: 'distance from the Sun', compare: this.compareDistance },
+                { title: 'size', compare: this.compareSize},
+                { title: 'density', compare: this.compareDensity},
+                { title: 'gravity', compare: this.compareGravity}
+            ],
             filterPlanets: null,
             isActive: "",
             showSun: false,

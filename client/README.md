@@ -1,4 +1,4 @@
-# the-curly-boys-curly-planet
+# Cosmodex
 
 ## Project setup
 ```

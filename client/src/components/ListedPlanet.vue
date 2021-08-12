@@ -1,43 +1,19 @@
 <template>
-    <div
-        class="listed-planet"
-        @click="handleClick()">
-        <label 
-            class="img-container"
-            :id="planet.englishName">
+    <v-card class="listed-planet" @click="handleClick()">
+        <label class="img-container">
             <input 
-                :id="`${planet.englishName}`" 
-                type="checkbox"  
-                :value="`${planet.englishName}`" 
-                v-model="planetChecked" 
-                @click="handleClick()"/>
+            :id="`${planet.englishName}`" 
+            type="checkbox"  
+            :value="`${planet.englishName}`" 
+            v-model="planetChecked" 
+            @click="handleClick()"/>
             <img
-                v-bind:class="isActive"
-                v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
-                :title="`${planet.englishName}`" alt="picture of chosen planet" 
-                :width="setWidthOfPlanetImage()"/>
+            v-bind:class="isActive"
+            v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
+            :title="`${planet.englishName}`" alt="picture of chosen planet" 
+            :width="setWidthOfPlanetImage()"/>
         </label>
-    </div>
-        <!-- <div 
-            class="listed-planet"
-            v-bind:class="showShadow"
-            @click="handleClick()">
-            <label 
-                class="img-container"
-                :id="planet.englishName">
-                <input 
-                    :id="`${planet.englishName}`" 
-                    type="checkbox"  
-                    :value="`${planet.englishName}`" 
-                    v-model="planetChecked" 
-                    @click="handleClick()"/>
-                <img
-                    v-bind:class="isActive"
-                    v-bind:src="require(`../assets/images/${planet.englishName}.png`)" 
-                    :title="`${planet.englishName}`" alt="picture of chosen planet" 
-                    :width="setWidthOfPlanetImage()"/>
-            </label>
-        </div> -->
+    </v-card>
 </template>
 
 <script>
@@ -98,7 +74,7 @@ export default {
     margin-left: -45px;
 } */
 .listed-planet > label {
-    width: 110px;
+    width: 155px;
     text-align: center;
 }
 .distance, .density, .gravity {

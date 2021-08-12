@@ -1,101 +1,100 @@
 <template>    
   <v-app id="inspire">
-    <!-- header/logo starts here -->
-    <!-- <div class=header> -->
-      <v-app-bar
-      app>
-        <v-card
-        class="d-flex justify-space-between mb-6"
-        style="width: 100%;"
-        :color="$vuetify.theme.dark ? 'grey darken-3' : 'grey lighten-4'"
-        flat
-        tile>
-        <!-- <div class=logo-container> -->
-          <v-toolbar-title>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="text-h6">
-                  Cosmodex
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  Our Solar System
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-          </v-toolbar-title>
-          <v-app-bar-nav-icon v-show="!drawer" @click="drawer = !drawer"></v-app-bar-nav-icon>
-        <!-- </div> -->
-        </v-card>
-      </v-app-bar>
 
-      <!-- main buttons here -->
-      <!-- <div class="main-menu"> -->
-      <v-navigation-drawer
-      v-model="drawer"
-      temporary
-      right
-      app>
-        <v-list
-        dense
-        nav>
-          <v-list-item
-          v-for="item in drowerItems"
-          :key="item.title"
-          link>
-            <v-list-item-content @click="show = item.link; drawer = !drawer">
-              <v-list-item-title> {{item.title}} </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    <!-- </div> -->
+  <!-- Header -->
+    <v-app-bar app>
+      <v-app-bar-title>
+        <v-list-item  @click="reloadPage">
+          <v-list-item-content>
+            <v-list-item-title class="text-h6">
+              Cosmodex
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              Our Solar System
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-app-bar-title>
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon v-show="!drawer" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
 
-    <!-- // list of planets starts here -->
+  <!-- Navigation Drower -->
+    <v-navigation-drawer
+    v-model="drawer"
+    temporary
+    right
+    app>
+      <v-list
+      dense
+      nav>
+        <v-list-item
+        v-for="item in drowerItems"
+        :key="item.title"
+        link>
+          <v-list-item-content @click="show = item.link; drawer = !drawer">
+            <v-list-item-title> {{item.title}} </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+  <!-- Main -->
+    <v-main>
+      <v-card class="d-flex flex-row">
+    <!-- Planet List -->
       <planet-list 
-        v-if="planets.length"
-        :planets="planets"
-        v-show="show === showPlanets"/>
+      v-if="planets.length"
+      :planets="planets"
+      v-show="show === showPlanets"/>
 
-    <!-- planet details starts here -->
+    <!-- Planet Details -->
       <planet-detail 
-        v-if="isSelected && show === showPlanets" 
-        :moons="moons" 
-        :planets="planets" 
-        :planet="isSelected" 
-        :getMoons="getMoons()" 
-        :descriptions="descriptions"
-        :milesConvertor="({props}) => Math.round(props/ 1.609)"
-        v-show="show === showPlanets"/>
+      v-if="isSelected && show === showPlanets" 
+      :moons="moons" 
+      :planets="planets" 
+      :planet="isSelected" 
+      :getMoons="getMoons()" 
+      :descriptions="descriptions"
+      :milesConvertor="({props}) => Math.round(props/ 1.609)"
+      v-show="show === showPlanets"/>
 
-    <!-- moon details starts here -->
+    <!-- Moon Detail -->
       <moon-detail
-        v-if="showMoon && show === showPlanets"
-        :moon="selectedMoon" 
-        :isSelected="isSelected" 
-        :planets="planets" 
-        :planet="isSelected"
-        :milesConvertor="({props}) => Math.round(props/ 1.609)"/>
+      v-if="showMoon && show === showPlanets"
+      :moon="selectedMoon" 
+      :isSelected="isSelected" 
+      :planets="planets" 
+      :planet="isSelected"
+      :milesConvertor="({props}) => Math.round(props/ 1.609)"/>
 
-    <!-- animation starts here -->
-    <div class="planet-animation">
-      <planet-animation 
+    <!-- Animation -->
+      <div class="planet-animation">
+        <planet-animation 
         :planets="planets" 
         v-show="show === showAnimation"/>
-    </div>
+      </div>
 
-    <!-- grossary starts here -->
-    <div class="glossary">
-      <glossary 
+    <!-- Grossary -->
+      <div class="glossary">
+        <glossary 
         :descriptions="descriptions" 
         v-show="show === showGlossary"/>
-    </div>
+      </div>
+      </v-card>
+    </v-main>
+
+  <!-- Footer -->
+    <v-footer app>
+    <!-- -->
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 
 import PlanetAnimation from './components/PlanetAnimation.vue'
-import ListedPlanet from './components/ListedPlanet.vue'
+// import ListedPlanet from './components/ListedPlanet.vue'
 import PlanetList from './components/PlanetList.vue'
 import PlanetDetail from './components/PlanetDetail.vue'
 import MoonList from './components/MoonList.vue'
@@ -197,6 +196,9 @@ export default {
     getDescriptions: function(){
       HubbleServices.getDescriptions()
       .then(data => this.descriptions = data)
+    },
+    reloadPage() {
+      window.location.reload();
     }
   }   
 }
